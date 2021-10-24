@@ -1,0 +1,73 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #efefef;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  margin: 10px;
+}
+
+.list-header,
+.list-country-shot-info {
+  font-weight: 800;
+}
+
+.list-languages {
+  margin: 0px;
+  padding: 0px;
+  list-style: disc;
+}
+
+.caption-block {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #aaa;
+}
+
+.caption-block-centered {
+  text-align: center;
+}
+
+.search-input,
+.clear-btn {
+  height: 35px;
+  padding: 5px;
+  margin: 10px;
+  border: 2px solid #aaa;
+  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+
+  font-size: 18px;
+}
+
+.search-input {
+  width: 250px;
+}
+
+.clear-btn {
+  width: 80px;
+  cursor: pointer;
+}
+
+.country-card-container {
+  display: flex;
+}
+
+.country-card-descr,
+.country-card-flag {
+  margin: 10px;
+  padding: 10px;
+  overflow: hidden;
+  border: 1px solid #aaa;
+}
