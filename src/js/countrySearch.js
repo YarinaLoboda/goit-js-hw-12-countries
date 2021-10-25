@@ -1,12 +1,14 @@
 import debounce from 'lodash.debounce';
-import fetchCountries from '../js/fetchCountries';
 import createMarkupCountryCard from '../js/renderCountryCard';
+import CountryApiService from './CountryApiService';
 
 const refs = {
   inputSearchVal: document.getElementById('searchval'),
   countryCardContainer: document.querySelector('div.js-country-card'),
   buttonClear: document.getElementById('button-clear'),
 };
+
+const countryApiService = new CountryApiService();
 
 refs.inputSearchVal.addEventListener(
   'input',
@@ -21,13 +23,19 @@ function onChangeSearchValInput(e) {
   if (!e.target.value) {
     clearCountryRenderContainer();
     disableButtonClear(refs.buttonClear);
+    countryApiService.resetQueryData();
     return;
   }
 
   enableButtonClear(refs.buttonClear);
 
-  fetchCountries(e.target.value)
-    .then(renderCountryCard)
+  countryApiService.query = e.target.value;
+
+  countryApiService
+    .fetchCountry()
+    .then(data => {
+      renderCountryCard(data);
+    })
     .catch(error => console.log(error));
 }
 
@@ -44,6 +52,7 @@ function clearInputSearchVal() {
 }
 
 function onClickButtonClear(e) {
+  countryApiService.resetQueryData();
   clearInputSearchVal();
   clearCountryRenderContainer();
   disableButtonClear(e.target);
